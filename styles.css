@@ -7,8 +7,8 @@
 
 
 #main{
-    width: 400px;
-    height: 400px;
-    margin: 100px auto;
+    width: 25em;
+    height: 25em;
+    margin: 0em auto;
     background-color: rgba(106, 100, 107, 0.5);
 }
