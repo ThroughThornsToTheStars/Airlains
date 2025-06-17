@@ -5,13 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
 
-    <title>Three JS</title>
+    <title>Airlines</title>
 </head>
 <body id="parent">
     <div id="main">
+        <form id="form">
+            <label>Длина<input type="number" min="0" name="length" /></label>
+            <label>Ширина<input type="number" min="0" name="width" /></label>
+            <label>Высота<input type="number" min="0" name="height" /></label>
+            <label id="grid5">Вес<input type="number" min="0" name="weight" /></label> <!--грид ров 2-->
+            
+            <label id="grid7">Шереметьево - Владивосток <br> (SVO-VVO) <input class="checkbox" type="radio" min="0" name="path" /></label>
+            <label id="grid8">Шереметьево - Санкт-Петербург <br> (SVO-LED) <input class="checkbox" type="radio" min="0" name="path" /></label>
 
+            <button id="end" type="submit">Проверить техническую возможность</button>
+            <!--Здесь мы создаем элемент Create element, который и отвечает за галочку. Если можно, то приравнием элементу класс с галочкой, если нет то крестик-->
+
+        </form>
     </div>
-</form>
 </body>
     <script src="./scripts.js"></script>
 </html>
