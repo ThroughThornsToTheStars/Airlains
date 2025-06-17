@@ -1,0 +1,14 @@
+#parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+#main{
+    width: 400px;
+    height: 400px;
+    margin: 100px auto;
+    background-color: rgba(106, 100, 107, 0.5);
+}
