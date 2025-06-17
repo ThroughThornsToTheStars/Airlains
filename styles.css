@@ -13,10 +13,15 @@
   #main{
     width: 30em;
     height: 35em;
+    
   }
 
   #form{
     gap: 1em;
+    font-size: 1.3em;
+  }
+  #submitBtn{
+    font-size: medium;
   }
 }
 
@@ -48,7 +53,10 @@
 
 input{
   width: 5em;
-  margin: 0.5em
+  margin: 0.5em;
+  border: 0.1em solid black;
+  outline: none;
+  font-size: 0.9em;
 }
 
 label {
@@ -76,11 +84,31 @@ label {
   grid-row: 3;
 }
 
-#end{
+#submitBtn{
   grid-column: 2;
   grid-row: 4;
+  width: 100%;
+  height: 100%;
+  font-size: 0.9em;
 }
 
 .checkbox{
   transform: scale(1.5)
+}
+
+.answer{
+  grid-column: 1;
+  grid-row: 4;
+}
+
+.check{
+  grid-column: 3;
+  grid-row: 4;
+}
+
+.result{
+  grid-column: 1 / span 3;
+  grid-row: 5;
+  font-size: 1em;
+  margin-top: -3em;
 }
