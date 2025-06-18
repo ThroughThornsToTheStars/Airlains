@@ -1,28 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
 
-    <title>Airlines</title>
-</head>
-<body id="parent">
-    <div id="main">
-        <form id="form">
-            <label>Длина<input type="number" min="0" name="length" required></label>
-            <label>Ширина<input type="number" min="0" name="width" required></label>
-            <label>Высота<input type="number" min="0" name="height" required></label>
-            <label id="grid5">Вес<input type="number" min="0" name="weight" required></label> <!--грид ров 2-->
-            
-            <label id="grid7">Шереметьево - Владивосток <br> (SVO-VVO) <input class="checkbox" type="radio" min="0" name="path" value="SVO-VVO" required></label>
-            <label id="grid8">Шереметьево - Санкт-Петербург <br> (SVO-LED) <input class="checkbox" type="radio" min="0" name="path" value="SVO-LED" required></label>
+        <title>Airlines</title>
+    </head>
+    <body id="parent">
+        <div id = "header">
+            <div class="upper">
+                <p class="upperText">Данные о грузе</p>
+                <form>
+                    <button class="upperReset" type="submit" ><img src="free-icon-delete-709518.png" alt=""></button>
+                </form>
+            </div>
+            <div class="main-container">
+                <div class="main">
 
-            <button id="submitBtn" type="submit">Проверить техническую возможность</button>
-            <!--Здесь мы создаем элемент Create element, который и отвечает за галочку. Если можно, то приравнием элементу класс с галочкой, если нет то крестик-->
+                </div>
+            </div>
+        </div>
 
-        </form>
-    </div>
-</body>
-    <script src="./scripts.js"></script>
-</html>
+        <div id = "footer">
+            <div class="upper">
+                
+            </div>
+        </div>
+    </body>
+        <script src="./scripts.js"></script>
+    </html>
