@@ -17,6 +17,23 @@
             </div>
             <div class="main-container">
                 <div class="main">
+                
+                    <form class="form">
+                        <p class="pathText">Маршрут: </p>
+                        <p class="dateText">Дата рейса:</p>
+                        <p class="lengthText">Длина:</p>
+                        <p class="widthText">Ширина:</p>
+                        <p class="weightText">Вес, кг: </p>
+                        <p class="heighText">Высота:</p>
+
+                        <input type="text" maxlength="3" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 3)" name="path1"><input type="text" maxlength="3" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '').slice(0, 3)" name="path2">
+                        <input type="date" name="date">
+                        <input type="number" min="0" name="length">
+                        <input type="number" min="0" name="width">
+                        <input type="number" min="0" name="weight">
+                        <input type="number" min="0" name="heigh">
+                    </form>
+
 
                 </div>
             </div>
@@ -24,7 +41,12 @@
 
         <div id = "footer">
             <div class="upper">
-                
+                <p class="upperText">Предварительное решение</p>
+            </div>
+
+            <div class="mainFooter">
+                <p class="answer"></p>
+                <button class="upperReset" type="submit" ><img src="free-icon-copy-860787.png" alt=""></button>
             </div>
         </div>
     </body>
