@@ -22,16 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(routes => {
             const selected = routes.find(route => route.code === path2.toUpperCase());
             
-            console.log(path1);
-            if(path1.toUpperCase() == "SVO"){
-                if(length == selected.lengthi && width == selected.width && weight == selected.weight && heigh == selected.height){
-                answer.textContent = "Техническую возможность подтверждаю";
-                answer.style.borderColor = "green";  
-                }else{
-                answer.textContent = "Техническую возможность не подтверждаю";
-                answer.style.borderColor = "red";  
+                if (!selected) {
+                    answer.textContent = "";
+                    answer.style.borderColor = "rgb(241, 241, 241)";
+                    return;  // выходим из then—блока
                 }
-            }
+
+                if(path1.toUpperCase() == "SVO"){
+                    if(length <= selected.lengthi && width <= selected.width && weight <= selected.weight && heigh <= selected.height){
+                    answer.textContent = "Техническую возможность подтверждаю";
+                    answer.style.borderColor = "green";  
+                    }else{
+                    answer.textContent = "Техническую возможность не подтверждаю";
+                    answer.style.borderColor = "red";  
+                    }
+                }else{
+                    answer.textContent = "";
+                    answer.style.borderColor = "rgb(241, 241, 241)";  
+                }
         });
     }
   }
