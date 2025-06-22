@@ -1,6 +1,30 @@
+@media (min-width: 700px){
+  #parent{
+    font-size: 12pt;
+  }
+  
+  .heighText{
+    width: 8em;
+  }
+
+
+}
+
+@media (max-width: 700px){
+  #parent{
+    font-size: 10pt;
+  }
+
+  .heighText{
+  
+  width: 6em;
+
+  }
+
+}
+
 #parent{
   font-family: Arial;
-  font-size: 10pt;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,13 +131,12 @@
 .heighText{
   grid-column: 1;
   grid-row: 5;
-
-  width: 8em;
 }
 
 input{
   border: solid rgb(241, 241, 241) 0.2em;
   border-radius: 0.6em;
+  height: 1.3em;
 }
 
 input[name="path1"]{
