@@ -202,12 +202,25 @@ input[name="heigh"]{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2em;
+  padding-top: 4em;
 }
 
 .answer{
-  width: 70%;
+  width: 80%;
   height: 1.5em;
   border: solid rgb(241, 241, 241) 0.2em;
   border-radius: 0.75em;
+  padding: 0.2em;
+}
+
+.copyBtn{
+  width: 2em;
+  height: 2em;
+  border: none;
+  background: none;
+}
+
+.copyBtn img{
+  width: 2em;
+  height: 2em;
 }

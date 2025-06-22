@@ -1,38 +1,74 @@
-let length = document.getElementsByName("length")[0];
-let width = document.getElementsByName("width")[0];
-let height = document.getElementsByName("height")[0];
-let weight  = document.getElementsByName("weight")[0];
-let path = document.getElementsByName("path");
-let form = document.getElementById("form");
+let answer = document.querySelector('.answer')
 
-let submitBtn = document.getElementById("submitBtn");
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('.form');
+  const inputs = form.querySelectorAll('input');
 
-submitBtn.addEventListener('click', function(){
+  function checkInputsFilled() {
+    let path1 = document.getElementsByName("path1")[0].value;
+    let path2 = document.getElementsByName("path2")[0].value;
+    let date = document.getElementsByName("date")[0].value;
+    let length = Number(document.getElementsByName("length")[0].value.replace(',', '.'));
+    let width  = Number(document.getElementsByName("width")[0].value.replace(',', '.'));
+    let weight = Number(document.getElementsByName("weight")[0].value.replace(',', '.'));
+    let heigh  = Number(document.getElementsByName("heigh")[0].value.replace(',', '.'));
 
-    let isFilled = 
-    length.value.trim() !== "" &&
-    width.value.trim() !== "" &&
-    height.value.trim() !== "" &&
-    weight.value.trim() !== "" &&
-    Array.from(path).some(radio => radio.checked);
 
-    if(isFilled){
-    //Чек бд, пока заглушка
-    submitBtn.remove();
+    const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+    
+    if (allFilled) {
+        fetch('routes.json')
+        .then(res => res.json())
+        .then(routes => {
+            const selected = routes.find(route => route.code === path2.toUpperCase());
+            
+            console.log(path1);
+            if(path1.toUpperCase() == "SVO"){
+                if(length == selected.lengthi && width == selected.width && weight == selected.weight && heigh == selected.height){
+                answer.textContent = "Техническую возможность подтверждаю";
+                answer.style.borderColor = "green";  
+                }else{
+                answer.textContent = "Техническую возможность не подтверждаю";
+                answer.style.borderColor = "red";  
+                }
+            }
+        });
+    }
+  }
 
-    let answer = document.createElement("p");
-    answer.classList.add("answer")
-    answer.textContent = "Решение";
-    form.appendChild(answer);
+  inputs.forEach(input => {
+    input.addEventListener('input', checkInputsFilled);
+  });
+});
 
-    let check = document.createElement("p");
-    check.classList.add("check")
-    check.textContent = "❌";
-    form.appendChild(check);
 
-    let result = document.createElement("button");
-    result.classList.add("result")
-    result.textContent = "Техническую возможность не подтверждаю";
-    result.disabled;
-    form.appendChild(result);
-}})
+let copyBtn = document.querySelector(".copyBtn");
+
+copyBtn.addEventListener('click', () => {
+    const text = answer.textContent.trim();
+    if (!text) return;
+
+    fallbackCopyTextToClipboard(text);
+  });
+
+  function fallbackCopyTextToClipboard(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.top      = '0';
+    textarea.style.left     = '0';
+    textarea.style.opacity  = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    try {
+      const successful = document.execCommand('copy');
+      if (!successful) throw new Error('Copy command was unsuccessful');
+    } catch (err) {
+      console.error('Не удалось скопировать текст: ', err);
+    }
+
+    document.body.removeChild(textarea);
+  }
+
+

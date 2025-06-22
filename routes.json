@@ -1,0 +1,16 @@
+[
+  {
+    "code": "LED",
+    "lengthi": 2.68,
+    "width": 1.81,
+    "height": 1.19,
+    "weight": 1000
+  },
+  {
+    "code": "VVO",
+    "lengthi": 3.17,
+    "width": 2.47,
+    "height": 1.70,
+    "weight": 4700
+  }
+]
