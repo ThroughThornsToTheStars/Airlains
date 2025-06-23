@@ -1,10 +1,24 @@
-let answer = document.querySelector('.answer')
+let answer = document.querySelector('.answer');
+let routesData = null; // здесь будет храниться JSON после загрузки
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Загружаем routes.json один раз
+  fetch('routes.json')
+    .then(res => res.json())
+    .then(data => {
+      routesData = data;
+    })
+    .catch(err => {
+      console.error('Ошибка при загрузке routes.json:', err);
+    });
+
   const form = document.querySelector('.form');
   const inputs = form.querySelectorAll('input');
 
   function checkInputsFilled() {
+    // Ждём пока JSON загрузится
+    if (!routesData) return;
+
     let path1 = document.getElementsByName("path1")[0].value;
     let path2 = document.getElementsByName("path2")[0].value;
     let date = document.getElementsByName("date")[0].value;
@@ -13,41 +27,35 @@ document.addEventListener('DOMContentLoaded', () => {
     let weight = Number(document.getElementsByName("weight")[0].value.replace(',', '.'));
     let heigh  = Number(document.getElementsByName("heigh")[0].value.replace(',', '.'));
 
-
     const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+    if (!allFilled) return;
+
+    const selected = routesData.find(route => route.code === path2.toUpperCase());
     
-    if (allFilled) {
-        fetch('routes.json')
-        .then(res => res.json())
-        .then(routes => {
-            const selected = routes.find(route => route.code === path2.toUpperCase());
-            
-                if (!selected) {
-                    answer.textContent = "";
-                    answer.style.borderColor = "rgb(241, 241, 241)";
-                    return;
-                }
+    if (!selected) {
+      answer.textContent = "";
+      answer.style.borderColor = "rgb(241, 241, 241)";
+      return;
+    }
 
-                if(path1.toUpperCase() == "SVO"){
-                    let matched = selected.options.find(option =>
-                        length <= option.lengthi &&
-                        width <= option.width &&
-                        heigh <= option.height &&
-                        weight <= option.weight
-                    );
+    if (path1.toUpperCase() === "SVO") {
+      let matched = selected.options.find(option =>
+        length <= option.lengthi &&
+        width <= option.width &&
+        heigh <= option.height &&
+        weight <= option.weight
+      );
 
-                    if(matched){
-                    answer.textContent = "Техническую возможность подтверждаю";
-                    answer.style.borderColor = "green";  
-                    }else{
-                    answer.textContent = "Техническую возможность не подтверждаю";
-                    answer.style.borderColor = "red";  
-                    }
-                }else{
-                    answer.textContent = "";
-                    answer.style.borderColor = "rgb(241, 241, 241)";  
-                }
-        });
+      if (matched) {
+        answer.textContent = "Техническую возможность подтверждаю";
+        answer.style.borderColor = "green";
+      } else {
+        answer.textContent = "Техническую возможность не подтверждаю";
+        answer.style.borderColor = "red";
+      }
+    } else {
+      answer.textContent = "";
+      answer.style.borderColor = "rgb(241, 241, 241)";
     }
   }
 
@@ -56,34 +64,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
+// Кнопка копирования
 let copyBtn = document.querySelector(".copyBtn");
 
 copyBtn.addEventListener('click', () => {
-    const text = answer.textContent.trim();
-    if (!text) return;
+  const text = answer.textContent.trim();
+  if (!text) return;
+  fallbackCopyTextToClipboard(text);
+});
 
-    fallbackCopyTextToClipboard(text);
-  });
+function fallbackCopyTextToClipboard(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.top = '0';
+  textarea.style.left = '0';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
 
-  function fallbackCopyTextToClipboard(text) {
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.style.position = 'fixed';
-    textarea.style.top      = '0';
-    textarea.style.left     = '0';
-    textarea.style.opacity  = '0';
-    document.body.appendChild(textarea);
-    textarea.select();
-
-    try {
-      const successful = document.execCommand('copy');
-      if (!successful) throw new Error('Copy command was unsuccessful');
-    } catch (err) {
-      console.error('Не удалось скопировать текст: ', err);
-    }
-
-    document.body.removeChild(textarea);
+  try {
+    const successful = document.execCommand('copy');
+    if (!successful) throw new Error('Copy command was unsuccessful');
+  } catch (err) {
+    console.error('Не удалось скопировать текст: ', err);
   }
 
-
+  document.body.removeChild(textarea);
+}
