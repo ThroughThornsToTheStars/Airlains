@@ -2,20 +2,23 @@ let answer = document.querySelector('.answer');
 let routesData = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('.form');
+  const inputs = form.querySelectorAll('input');
+
   fetch('routes.json')
     .then(res => res.json())
     .then(data => {
       routesData = data;
+      // Только теперь подключаем обработчики
+      inputs.forEach(input => {
+        input.addEventListener('input', checkInputsFilled);
+      });
     })
     .catch(err => {
       console.error('Ошибка при загрузке routes.json:', err);
     });
 
-  const form = document.querySelector('.form');
-  const inputs = form.querySelectorAll('input');
-
   function checkInputsFilled() {
-    // Ждём пока JSON загрузится
     if (!routesData) return;
 
     let path1 = document.getElementsByName("path1")[0].value;
@@ -30,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!allFilled) return;
 
     const selected = routesData.find(route => route.code === path2.toUpperCase());
-    
+
     if (!selected) {
       answer.textContent = "";
       answer.style.borderColor = "rgb(241, 241, 241)";
@@ -57,13 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
       answer.style.borderColor = "rgb(241, 241, 241)";
     }
   }
-
-  inputs.forEach(input => {
-    input.addEventListener('input', checkInputsFilled);
-  });
 });
 
-
+// Копирование как было
 let copyBtn = document.querySelector(".copyBtn");
 
 copyBtn.addEventListener('click', () => {
