@@ -1,16 +1,67 @@
 [
   {
     "code": "LED",
-    "lengthi": 2.68,
-    "width": 1.81,
-    "height": 1.19,
-    "weight": 1000
+    "options": [
+      {"width": 10, "height": 114, "lengthi": 424, "weight": 1000},
+      {"width": 20, "height": 114, "lengthi": 404, "weight": 1000},
+      {"width": 30, "height": 114, "lengthi": 384, "weight": 1000},
+      {"width": 40, "height": 114, "lengthi": 364, "weight": 1000},
+      {"width": 50, "height": 114, "lengthi": 344, "weight": 1000},
+      {"width": 60, "height": 114, "lengthi": 324, "weight": 1000},
+      {"width": 70, "height": 114, "lengthi": 304, "weight": 1000},
+      {"width": 80, "height": 114, "lengthi": 284, "weight": 1000},
+      {"width": 90, "height": 114, "lengthi": 264, "weight": 1000},
+      {"width": 100, "height": 114, "lengthi": 243, "weight": 1000},
+      {"width": 110, "height": 114, "lengthi": 223, "weight": 1000},
+      {"width": 120, "height": 114, "lengthi": 203, "weight": 1000},
+      {"width": 130, "height": 114, "lengthi": 182, "weight": 1000},
+      {"width": 140, "height": 114, "lengthi": 172, "weight": 1000},
+      {"width": 150, "height": 114, "lengthi": 143, "weight": 1000},
+      {"width": 160, "height": 114, "lengthi": 143, "weight": 1000},
+      {"width": 170, "height": 114, "lengthi": 143, "weight": 1000},
+
+      {"width": 10, "height": 101, "lengthi": 485, "weight": 1000},
+      {"width": 20, "height": 101, "lengthi": 485, "weight": 1000},
+      {"width": 30, "height": 101, "lengthi": 465, "weight": 1000},
+      {"width": 40, "height": 101, "lengthi": 445, "weight": 1000},
+      {"width": 50, "height": 101, "lengthi": 425, "weight": 1000},
+      {"width": 60, "height": 101, "lengthi": 405, "weight": 1000},
+      {"width": 70, "height": 101, "lengthi": 384, "weight": 1000},
+      {"width": 80, "height": 101, "lengthi": 364, "weight": 1000},
+      {"width": 90, "height": 101, "lengthi": 344, "weight": 1000},
+      {"width": 100, "height": 101, "lengthi": 324, "weight": 1000},
+      {"width": 110, "height": 101, "lengthi": 304, "weight": 1000},
+      {"width": 120, "height": 101, "lengthi": 284, "weight": 1000},
+      {"width": 130, "height": 101, "lengthi": 264, "weight": 1000},
+      {"width": 140, "height": 101, "lengthi": 243, "weight": 1000},
+      {"width": 150, "height": 101, "lengthi": 223, "weight": 1000},
+      {"width": 160, "height": 101, "lengthi": 202, "weight": 1000},
+      {"width": 170, "height": 101, "lengthi": 200, "weight": 1000},
+
+      {"width": 10, "height": 80, "lengthi": 485, "weight": 1000},
+      {"width": 20, "height": 80, "lengthi": 485, "weight": 1000},
+      {"width": 30, "height": 80, "lengthi": 485, "weight": 1000},
+      {"width": 40, "height": 80, "lengthi": 485, "weight": 1000},
+      {"width": 50, "height": 80, "lengthi": 485, "weight": 1000},
+      {"width": 60, "height": 80, "lengthi": 475, "weight": 1000},
+      {"width": 70, "height": 80, "lengthi": 455, "weight": 1000},
+      {"width": 80, "height": 80, "lengthi": 435, "weight": 1000},
+      {"width": 90, "height": 80, "lengthi": 414, "weight": 1000},
+      {"width": 100, "height": 80, "lengthi": 394, "weight": 1000},
+      {"width": 110, "height": 80, "lengthi": 373, "weight": 1000},
+      {"width": 120, "height": 80, "lengthi": 352, "weight": 1000},
+      {"width": 130, "height": 80, "lengthi": 331, "weight": 1000},
+      {"width": 140, "height": 80, "lengthi": 310, "weight": 1000},
+      {"width": 150, "height": 80, "lengthi": 288, "weight": 1000},
+      {"width": 160, "height": 80, "lengthi": 266, "weight": 1000},
+      {"width": 170, "height": 80, "lengthi": 253, "weight": 1000}
+    ]
+
   },
   {
     "code": "VVO",
-    "lengthi": 3.17,
-    "width": 2.47,
-    "height": 1.70,
-    "weight": 4700
+    "options": [
+      {"width": 239.8, "height": 160, "lengthi": 313.5, "weight": 4600}
+    ]
   }
 ]

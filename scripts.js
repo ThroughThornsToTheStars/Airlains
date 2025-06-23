@@ -25,11 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!selected) {
                     answer.textContent = "";
                     answer.style.borderColor = "rgb(241, 241, 241)";
-                    return;  // выходим из then—блока
+                    return;
                 }
 
                 if(path1.toUpperCase() == "SVO"){
-                    if(length <= selected.lengthi && width <= selected.width && weight <= selected.weight && heigh <= selected.height){
+                    let matched = selected.options.find(option =>
+                        length <= option.lengthi &&
+                        width <= option.width &&
+                        heigh <= option.height &&
+                        weight <= option.weight
+                    );
+
+                    if(matched){
                     answer.textContent = "Техническую возможность подтверждаю";
                     answer.style.borderColor = "green";  
                     }else{
