@@ -1,23 +1,27 @@
 let answer = document.querySelector('.answer');
-let routesData = null; // здесь будет храниться JSON после загрузки
+let routesData = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Загружаем routes.json один раз
+  const fetchStart = performance.now();
+
   fetch('routes.json')
     .then(res => res.json())
     .then(data => {
+      const fetchEnd = performance.now();
+      alert(`routes.json загружен за ${Math.round(fetchEnd - fetchStart)} мс`);
       routesData = data;
     })
     .catch(err => {
-      console.error('Ошибка при загрузке routes.json:', err);
+      alert('Ошибка при загрузке routes.json: ' + err);
     });
 
   const form = document.querySelector('.form');
   const inputs = form.querySelectorAll('input');
 
   function checkInputsFilled() {
-    // Ждём пока JSON загрузится
     if (!routesData) return;
+
+    const t0 = performance.now();
 
     let path1 = document.getElementsByName("path1")[0].value;
     let path2 = document.getElementsByName("path2")[0].value;
@@ -30,22 +34,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
     if (!allFilled) return;
 
+    const t1 = performance.now();
+
     const selected = routesData.find(route => route.code === path2.toUpperCase());
-    
+    const t2 = performance.now();
+
     if (!selected) {
       answer.textContent = "";
       answer.style.borderColor = "rgb(241, 241, 241)";
       return;
     }
 
+    let matched = null;
     if (path1.toUpperCase() === "SVO") {
-      let matched = selected.options.find(option =>
+      matched = selected.options.find(option =>
         length <= option.lengthi &&
         width <= option.width &&
         heigh <= option.height &&
         weight <= option.weight
       );
+    }
 
+    const t3 = performance.now();
+
+    // показываем сколько заняли части кода
+    alert(
+      `Время выполнения:\n` +
+      `🔹 Подготовка данных: ${Math.round(t1 - t0)} мс\n` +
+      `🔹 Поиск маршрута: ${Math.round(t2 - t1)} мс\n` +
+      `🔹 Поиск подходящей опции: ${Math.round(t3 - t2)} мс\n` +
+      `🔹 Всего: ${Math.round(t3 - t0)} мс`
+    );
+
+    if (path1.toUpperCase() === "SVO") {
       if (matched) {
         answer.textContent = "Техническую возможность подтверждаю";
         answer.style.borderColor = "green";
@@ -59,12 +80,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function debounce(func, delay) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
   inputs.forEach(input => {
-    input.addEventListener('input', checkInputsFilled);
+    input.addEventListener('input', debounce(checkInputsFilled, 300));
   });
 });
 
-// Кнопка копирования
 let copyBtn = document.querySelector(".copyBtn");
 
 copyBtn.addEventListener('click', () => {
@@ -87,7 +115,7 @@ function fallbackCopyTextToClipboard(text) {
     const successful = document.execCommand('copy');
     if (!successful) throw new Error('Copy command was unsuccessful');
   } catch (err) {
-    console.error('Не удалось скопировать текст: ', err);
+    alert('Не удалось скопировать текст: ' + err);
   }
 
   document.body.removeChild(textarea);
